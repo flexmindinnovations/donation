@@ -1,0 +1,58 @@
+<div class="add-employee-form-modal h-full flex flex-col">
+    <div class="form-container flex-grow overflow-auto py-2 px-6">
+        <form [formGroup]="employeeForm" class="grid grid-cols-2 gap-x-4 gap-y-2">
+            <fieldset class="flex flex-col mb-2 col-span-2">
+                <label for="IsActive" class="mb-2">Is Active</label>
+                <p-inputSwitch id="IsActive" name="IsActive" formControlName="IsActive" />
+            </fieldset>
+            <fieldset class="flex flex-col mb-2">
+                <label for="EmployeeName" class="mb-2">First Name</label>
+                <input id="EmployeeName" name="EmployeeName" formControlName="EmployeeName" pInputText />
+            </fieldset>
+            <fieldset class="flex flex-col mb-2">
+                <label for="EmployeeSurname" class="mb-2">Surname</label>
+                <input id="EmployeeSurname" name="EmployeeSurname" formControlName="EmployeeSurname" pInputText />
+            </fieldset>
+            <fieldset class="flex flex-col mb-2">
+                <label for="EmployeeFatherName" class="mb-2">Father Name</label>
+                <input id="EmployeeFatherName" name="EmployeeFatherName" formControlName="EmployeeFatherName"
+                    pInputText />
+            </fieldset>
+            <fieldset class="flex flex-col mb-2">
+                <label for="Gender" class="mb-2">Gender</label>
+                <p-dropdown id="Gender" name="Gender" formControlName="Gender" [options]="genderData"
+                    optionLabel="title" optionValue="value" placeholder="Select" />
+            </fieldset>
+            <fieldset class="flex flex-col mb-2">
+                <label for="City" class="mb-2">City</label>
+                <input id="City" name="City" formControlName="City" pInputText />
+            </fieldset>
+            <fieldset class="flex flex-col mb-2">
+                <label for="PinCode" class="mb-2">Pincode</label>
+                <p-inputNumber inputId="integerOnly" id="PinCode" name="PinCode" formControlName="PinCode" />
+            </fieldset>
+            <fieldset class="flex flex-col mb-2">
+                <label for="MobilePhone" class="mb-2">Mobile Phone</label>
+                <p-inputNumber inputId="integerOnly" id="MobilePhone" name="MobilePhone"
+                    formControlName="MobilePhone" />
+            </fieldset>
+            <fieldset class="flex flex-col mb-2">
+                <label for="HomePhone" class="mb-2">Home Phone</label>
+                <p-inputNumber inputId="integerOnly" id="HomePhone" name="HomePhone" formControlName="HomePhone" />
+            </fieldset>
+            <fieldset class="flex flex-col mb-2">
+                <label for="PersonalEmail" class="mb-2">Personal Email</label>
+                <input inputId="integerOnly" id="PersonalEmail" name="PersonalEmail" formControlName="PersonalEmail"
+                    pInputText />
+            </fieldset>
+            <fieldset class="flex flex-col mb-2 col-span-2">
+                <label for="Address" class="mb-2">Address</label>
+                <textarea id="Address" rows="4" name="Address" formControlName="Address" pInputTextarea></textarea>
+            </fieldset>
+        </form>
+    </div>
+    <div class="actions max-h-20 px-6 py-2 backdrop-filter backdrop-blur-lg bg-white bg-opacity-30 firefox:bg-opacity-90 flex items-center justify-end border border-t-gray-200">
+        <p-button [label]="isLoading ? 'Submitting...' : 'Submit'" [disabled]="employeeForm.invalid || isLoading"
+            [icon]="isLoading ? 'pi pi-spin pi-spinner' : 'pi pi-save'"></p-button>
+    </div>
+</div>
