@@ -1,5 +1,5 @@
 <div class="bg-gray-100 flex items-center justify-center h-full">
-    <div class="bg-white flex flex-col md:flex-row p-8 rounded-3xl shadow-md w-[70%]">
+    <div class="bg-white flex flex-col md:flex-row p-8 rounded-3xl shadow-md w-[60%]">
         <div class="text-center flex flex-col justify-start items-center md:items-start w-full md:w-1/2 mb-8">
             <img src="assets/logo.jpg" alt="Gmail Logo" class="h-20">
             <h2 class="mt-6 text-2xl font-medium text-gray-900">
@@ -19,8 +19,8 @@
                         <label for="email" class="labelContainer">Email or phone</label>
                     </div>
                     <div class="mt-1 ml-2" *ngIf="emailSubmitted && contact?.invalid">
-                        <p class="text-xs text-red-500" *ngIf="contact?.errors?.['required']">Contact is required.</p>
-                        <p class="text-xs text-red-500" *ngIf="contact?.errors?.['pattern']">Invalid contact format.
+                        <p class="text-xs text-red-500" *ngIf="contact?.errors?.['required']">Email or Mobile is required.</p>
+                        <p class="text-xs text-red-500" *ngIf="contact?.errors?.['pattern']">
                             Enter a valid
                             email or 10-digit mobile number.</p>
                     </div>
@@ -31,7 +31,7 @@
                             placeholder=" " />
                         <label for="password" class="labelContainer">Password</label>
                     </div>
-                    <div *ngIf="passwordSubmitted && formGroup.get('password')?.invalid">
+                    <div class="mt-1 ml-2" *ngIf="passwordSubmitted && formGroup.get('password')?.invalid">
                         <p class="text-xs text-red-500" *ngIf="formGroup.get('password')?.errors?.['required']">Password is required.</p>
                         <p class="text-xs text-red-500" *ngIf="formGroup.get('password')?.errors?.['minlength']">Password must be at least 4 characters long.</p>
                     </div>
