@@ -1,0 +1,62 @@
+.approach,
+.services {
+    ul {
+        li {
+            position: relative;
+            list-style-type: none;
+            text-align: justify;
+
+            &::before {
+                @apply flex items-center justify-center;
+                content: '';
+                position: absolute;
+                top: 4px;
+                background-color: rgb(204, 230, 230, 204);
+                border-radius: 50%;
+                left: -24px;
+                width: 16px;
+                height: 16px;
+                background-image: url('/assets/resources/icons/checkmark-sharp.svg');
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+        }
+    }
+}
+
+.impact {
+    .gallery-item {
+        @apply h-80 w-full;
+
+        &:hover {
+            .image-container {
+                @apply bg-black/40;
+                height: calc(20rem - 4rem);
+                transition: height 0.3s ease-in-out;
+            }
+
+            .hero-desc {
+                @apply block;
+            }
+        }
+
+        .hero-desc {
+            @apply hidden min-h-6 px-2;
+        }
+
+        .image-container {
+            @apply h-full w-full;
+            transition: height 0.3s ease-in-out;
+
+            &:hover {
+                img {
+                    
+                }
+            }
+
+            img {
+                @apply h-full w-full object-cover;
+            }
+        }
+    }
+}
