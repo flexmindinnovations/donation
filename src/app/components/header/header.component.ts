@@ -40,7 +40,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       { id: 1, key: 'HOME', title: 'Home', route: '/', icon: '', isActive: false },
       { id: 2, key: 'ABOUT', title: 'About', route: '/about', icon: '', isActive: false },
       { id: 3, key: 'CONTACT', title: 'Contact', route: '/contact', icon: '', isActive: false },
-      // {id: 4, key: 'HOME', title: 'Home', route: '/', icon: '', isActive: false},
+      {id: 4, key: 'LOGIN', title: 'Login', route: '/login', icon: '', isActive: false},
     ];
   }
 
