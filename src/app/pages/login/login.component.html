@@ -1,1 +1,52 @@
-<p>login works!</p>
+<div class="bg-gray-100 flex items-center justify-center h-full">
+    <div class="bg-white flex flex-col md:flex-row p-8 rounded-3xl shadow-md w-[70%]">
+        <div class="text-center flex flex-col justify-start items-center md:items-start w-full md:w-1/2 mb-8">
+            <img src="assets/logo.jpg" alt="Gmail Logo" class="h-20">
+            <h2 class="mt-6 text-2xl font-medium text-gray-900">
+                Sign in
+            </h2>
+            <p class="mt-2 text-sm text-gray-600">
+                to continue to Gmail
+            </p>
+        </div>
+        <form [formGroup]="formGroup" (ngSubmit)="onSubmit()"
+            class="flex flex-col justify-between w-full md:w-1/2 space-y-6 p-2">
+            <div class="flex flex-col gap-6">
+                <div *ngIf="!emailIsValid">
+                    <div class="relative">
+                        <input type="text" id="email" formControlName="emailOrPhone" class="inputContainer peer"
+                            placeholder=" " />
+                        <label for="email" class="labelContainer">Email or phone</label>
+                    </div>
+                    <div class="mt-1 ml-2" *ngIf="emailSubmitted && contact?.invalid">
+                        <p class="text-xs text-red-500" *ngIf="contact?.errors?.['required']">Contact is required.</p>
+                        <p class="text-xs text-red-500" *ngIf="contact?.errors?.['pattern']">Invalid contact format.
+                            Enter a valid
+                            email or 10-digit mobile number.</p>
+                    </div>
+                </div>
+                <div *ngIf="emailIsValid">
+                    <div class="relative">
+                        <input type="password" id="password" formControlName="password" class="inputContainer peer"
+                            placeholder=" " />
+                        <label for="password" class="labelContainer">Password</label>
+                    </div>
+                    <div *ngIf="passwordSubmitted && formGroup.get('password')?.invalid">
+                        <p class="text-xs text-red-500" *ngIf="formGroup.get('password')?.errors?.['required']">Password is required.</p>
+                        <p class="text-xs text-red-500" *ngIf="formGroup.get('password')?.errors?.['minlength']">Password must be at least 4 characters long.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-end gap-1 p-2">
+                <button type="button" class="text-sm md:text-base py-1 md:py-2 px-4 md:px-8 text-blue-600">
+                    Register
+                </button>
+                <button type="submit"
+                    class="group relative flex justify-center py-1 md:py-2 px-4 md:px-8 border border-transparent text-sm md:text-base font-medium rounded-full text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                    Next
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
