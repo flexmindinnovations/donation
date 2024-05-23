@@ -1,14 +1,15 @@
 <nav
-    class="sticky top-0 z-10 max-h-16 bg-white backdrop-filter backdrop-blur-lg border-b border-gray-200 firefox:bg-opacity-90">
+    class="sticky top-0 z-10 max-h-16 bg-white backdrop-filter backdrop-blur-lg border-b border-gray-200 bg-opacity-30 firefox:bg-opacity-90">
     <div class="wrapper h-16 max-w-5xl mx-auto flex items-center justify-between px-10">
         <div class="logo h-12 w-16">
             <a class="cursor-pointer" (click)="handleLogoClick()">
-                <img [src]="logoSrc" class="h-full w-full object-fill bg-cover bg-center" alt="logo" />
+                <img [src]="logoSrc" class="h-full w-full object-fill bg-cover bg-center aspect-auto" alt="logo" />
             </a>
         </div>
         <div class="menu-items">
             <ul class="m-0 flex space-x-4">
-                @for (item of navbarMenuItems; track $index) {
+                @for (item of NAVBAR_MENU_ITEMS; track $index) {
+                @if (item?.isHeaderItem) {
                 <li class="cursor-pointer px-4 py-1 rounded-full hover:bg-gray-200 select-none"
                     [ngClass]="item.isActive ? 'bg-gray-200 border border-gray-600' : 'border border-transparent'"
                     (click)="handleNavItemClick(item)">
@@ -16,6 +17,7 @@
                         {{item.title}}
                     </p>
                 </li>
+                }
                 }
                 <li class="cursor-pointer px-4 py-1 rounded-full hover:bg-gray-200 active:focus:bg-gray-300 active:focus:border active:focus:border-gray-600 select-none"
                     (click)="handleAddUser()">

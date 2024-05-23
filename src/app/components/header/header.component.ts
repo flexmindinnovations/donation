@@ -1,9 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, DoCheck, HostListener, NgZone, OnInit } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { MenubarModule } from 'primeng/menubar';
 import { AddUserComponent } from '../../modals/add-user/add-user.component';
 import { DialogService, DynamicDialogModule, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { SharedService } from '../../services/shared.service';
+import { NAVBAR_MENU_ITEMS } from '../../services/util';
+import { NavbarMenuItem } from '../../interface/navbar';
 
 @Component({
   selector: 'app-header',
@@ -13,51 +16,26 @@ import { DialogService, DynamicDialogModule, DynamicDialogRef } from 'primeng/dy
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
-export class HeaderComponent implements OnInit, AfterViewInit {
+export class HeaderComponent {
   logoSrc: string = 'assets/logo.jpg';
-  navbarMenuItems: NavbarMenuItem[] = [];
+  NAVBAR_MENU_ITEMS: NavbarMenuItem[] = NAVBAR_MENU_ITEMS;
   ref: DynamicDialogRef | undefined;
+
   constructor(
     private router: Router,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private sharedService: SharedService
   ) { }
 
-  ngOnInit(): void {
-    this.setNavbarMenuItems();
-  }
-
-  ngAfterViewInit(): void {
-
-    window.addEventListener("load", () => {
-      const url = window.location.href;
-      const currentRoute = url.substring(url.lastIndexOf('/') + 1, url.length);
-      this.setActiveItemOnPageRefresh(currentRoute);
-    });
-  }
-
-  setNavbarMenuItems() {
-    this.navbarMenuItems = [
-      { id: 1, key: 'HOME', title: 'Home', route: '/', icon: '', isActive: false },
-      { id: 2, key: 'ABOUT', title: 'About', route: '/about', icon: '', isActive: false },
-      { id: 3, key: 'CONTACT', title: 'Contact', route: '/contact', icon: '', isActive: false },
-      {id: 4, key: 'LOGIN', title: 'Login', route: '/login', icon: '', isActive: false},
-    ];
-  }
-
-  setActiveItemOnPageRefresh(route: string) {
-    const itemIndex = this.navbarMenuItems.findIndex(item => item.key.toLowerCase() === route);
-    if (itemIndex > -1) this.navbarMenuItems[itemIndex].isActive = true;
-    else this.navbarMenuItems[0].isActive = true;
-  }
 
   handleLogoClick() {
     this.router.navigateByUrl('/');
-    this.navbarMenuItems.forEach(item => item.isActive = false);
-    this.navbarMenuItems[0].isActive = true;
+    NAVBAR_MENU_ITEMS.forEach(item => item.isActive = false);
+    NAVBAR_MENU_ITEMS[0].isActive = true;
   }
 
   handleNavItemClick(_t6: NavbarMenuItem) {
-    this.navbarMenuItems.forEach(item => item.isActive = false);
+    NAVBAR_MENU_ITEMS.forEach(item => item.isActive = false);
     _t6.isActive = true;
     this.router.navigateByUrl(_t6.route);
   }
@@ -73,13 +51,4 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       }
     );
   }
-}
-
-interface NavbarMenuItem {
-  id: number;
-  key: string;
-  title: string;
-  route: string;
-  icon: string;
-  isActive: boolean;
 }

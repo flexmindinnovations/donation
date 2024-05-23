@@ -1,1 +1,78 @@
-<p>contact works!</p>
+<section class="contact-us">
+    <div class="hero-section bg-contact bg-center bg-cover object-fill w-full !h-[30rem] flex">
+        <div
+            class="overlay flex-1 backdrop-filter backdrop-blur-md bg-black/70 flex flex-col items-center justify-center gap-4">
+            <h1 class="max-w-5xl text-6xl text-white font-bold block text-center">
+                Contact {{domain}}
+            </h1>
+            <p class="max-w-3xl block text-justify hero-desc">
+                Want to chat, gossip, or just shoot the breeze? Well, you've come to the right place. We've got all the
+                deets you need to connect with us. Don't be shy, reach out and say hi!
+            </p>
+        </div>
+    </div>
+    <div class="content max-w-5xl py-5">
+        <div class="my-5 grid grid-cols-12">
+            <h1 class="hero-title col-span-12 text-gray-900 w-full block text-center text-xl font-bold">
+                Get in Touch
+            </h1>
+            <p class="col-span-12 block max-w-4xl text-center my-4">
+                We’re thrilled that you want to connect with us. Whether you have questions, feedback, or just want to
+                chat, we’re all ears! Feel free to reach out using any of the methods below:
+            </p>
+            @for (item of connectOptions; track $index) {
+            <div class="col-span-3 my-5 flex flex-col items-center justify-center">
+                <div class="icon flex items-center justify-center">
+                    <i class="{{item.icon}}" style="font-size: 2rem;"></i>
+                </div>
+                <h3 class="text-xl block text-center font-bold my-3 select-none">{{item?.headingText}}</h3>
+                <p class="hero-desc select-none text-xs font-bold">{{item?.descriptionText}}</p>
+            </div>
+            }
+        </div>
+    </div>
+</section>
+<section class="contact-form">
+    <div class="content">
+        <section class="approach">
+            <div class="content py-16">
+                <div class="grid grid-cols-12 gap-10">
+                    <div class="col-span-6 flex flex-col items-start justify-center gap-4">
+                        <i class="pi pi-envelope" style="font-size: 3rem;"></i>
+                        <h1 class="hero-title">
+                            If you like what you see then let's work together.
+                        </h1>
+                        <p class="hero-desc">
+                            We bring rapid solutions to bring our clients life to ease. Have any questions? We are here
+                            to help! Fill this Contact Form and we will get back to you as soon as possible.
+                        </p>
+                    </div>
+                    <div class="col-span-6 flex items-end justify-end h-full w-full">
+                        <form [formGroup]="contactForm" class="grid grid-cols-12 gap-3">
+                            <fieldset class="col-span-6 flex flex-col mb-2">
+                                <label for="firstName" class="mb-2">First Name</label>
+                                <input id="firstName" name="firstName" formControlName="firstName" pInputText />
+                            </fieldset>
+                            <fieldset class="col-span-6 flex flex-col mb-2">
+                                <label for="lastName" class="mb-2">Last Name</label>
+                                <input id="lastName" name="lastName" formControlName="lastName" pInputText />
+                            </fieldset>
+                            <fieldset class="col-span-12 flex flex-col mb-2">
+                                <label for="email" class="mb-2">Email</label>
+                                <input id="email" name="email" formControlName="email" pInputText />
+                            </fieldset>
+                            <fieldset class="col-span-12 flex flex-col mb-2">
+                                <label for="message" class="mb-2">Message</label>
+                                <textarea id="message" rows="4" name="message" formControlName="message"
+                                    pInputTextarea></textarea>
+                            </fieldset>
+                            <fieldset class="my-3 col-span-12 flex items-center justify-end">
+                                <p-button label="Submit Request"></p-button>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>

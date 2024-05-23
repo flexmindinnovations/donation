@@ -8,7 +8,15 @@
     @tailwind components;
     @tailwind utilities;
 }
+
+@layer utilities {
+    .h-inherit {
+        height: inherit;
+    }
+}
+
 @import "primeicons/primeicons.css";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 @layer reset {
 
@@ -28,6 +36,7 @@
                 @apply text-lg font-normal;
             }
         }
+
         .p-dialog-content {
             @apply p-0;
         }
@@ -38,6 +47,57 @@
 
         .p-button-label {
             @apply font-normal uppercase text-sm;
+        }
+    }
+
+    .hero-button.p-button.p-button-outlined {
+        background-color: transparent;
+        color: #fff;
+        border: 1px solid;
+    }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+section {
+    @apply w-full;
+
+    .hero-section {
+        @apply h-full;
+
+        .hero-title {
+            @apply text-4xl font-bold my-2 text-white;
+        }
+
+        .hero-desc {
+            @apply my-2 text-white;
+        }
+    }
+
+    .content {
+        @apply max-w-5xl mx-auto h-full;
+
+        .hero-title {
+            @apply text-4xl font-bold my-2 text-gray-900;
+        }
+
+        .hero-desc {
+            @apply my-2 text-gray-900;
+        }
+
+        .hands-image {
+            aspect-ratio: 1880 / 1253;
         }
     }
 }

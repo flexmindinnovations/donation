@@ -1,21 +1,23 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl,FormGroup,ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { InputComponent } from '../../components/input/input.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  imports: [ReactiveFormsModule, CommonModule]
+  imports: [ReactiveFormsModule, CommonModule,InputComponent],
 })
+
 export class LoginComponent implements OnInit {
-  emailIsValid: boolean = false;
   formGroup!: FormGroup;
   fb = inject(FormBuilder);
-  contactPattern = /^(?:[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}|[0-9]{10})$/;
-  emailSubmitted: boolean = false;
-  passwordSubmitted: boolean = false;
+  submitted = false;
+  emaiIsValid:boolean=false;
+  constructor(private router: Router) { }
 
   ngOnInit() {
     this.initFormGroup();
@@ -23,31 +25,30 @@ export class LoginComponent implements OnInit {
 
   initFormGroup() {
     this.formGroup = this.fb.group({
-      emailOrPhone: ['', [Validators.required, Validators.pattern(this.contactPattern)]],
-      password: ['', [Validators.required,Validators.minLength(4)]]
+      emailOrPhone: ['',[Validators.required]],
+      password: ['',[Validators.required]]
     });
   }
 
-  get formGroupControl(): { [key: string]: FormControl } {
-    return this.formGroup.controls as { [key: string]: FormControl };
-  }
-
-  get contact() {
-    return this.formGroup?.get('emailOrPhone');
+  handleValueChange(value: any,src:any) {
+    this.formGroup.get(src)?.setValue(value);
   }
 
   onSubmit() {
-    if (!this.emailIsValid) {
-      this.emailSubmitted = true;
-      const emailOrPhoneControl = this.formGroup.get('emailOrPhone');
-      if (emailOrPhoneControl) {
-        this.emailIsValid = this.contactPattern.test(emailOrPhoneControl.value);
-      }
-    } else {
-      this.passwordSubmitted = true;
-      if (this.formGroup.valid) {
-        console.log('Form Submitted:', this.formGroup.value);
-      }
+    this.submitted = true;
+    if(this.formGroup.get('emailOrPhone')?.valid){
+      this.emaiIsValid = true
     }
+    if (this.formGroup.valid) {
+      // Handle valid form submission
+      console.log('Form Submitted', this.formGroup.value);
+    } else {
+      // Handle form errors
+      console.log('Form has errors');
+    }
+  }
+
+  handleRegister() {
+    this.router.navigateByUrl('/register');
   }
 }

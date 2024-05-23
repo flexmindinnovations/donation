@@ -1,1 +1,170 @@
-<p>home works!</p>
+<section class="hero-section p-0 w-full h-full bg-hero bg-no-repeat bg-cover bg-[0-64px] object-fill">
+    <div class="overlay h-full w-full bg-black/70 flex">
+        <div class="content max-w-5xl mx-auto flex-1 flex flex-col items-center justify-center">
+            <div class="hero-text max-w-3xl">
+                <h1 class="text-6xl block text-center font-bold text-white">
+                    Spark a Revolution with Your Generosity
+                </h1>
+                <p class="text-xl text-white block text-center my-8">
+                    Unleash the power of giving by donating clothes and essential items to those who could really use
+                    them.
+                </p>
+            </div>
+            <div class="actions flex-1 my-4 flex gap-4 max-h-9">
+                <p-button styleClass="hero-button" label="Donate Now" [outlined]="true" />
+                <p-button label="Join the Giving Squad" />
+            </div>
+        </div>
+    </div>
+</section>
+<section class="ouselves">
+    <div class="content py-16">
+        <div class="grid grid-cols-12">
+            <div class="col-span-6 flex flex-col items-start justify-center">
+                <h1 class="hero-title">
+                    Who We Are
+                </h1>
+                <p class="hero-desc">
+                    At {{domain}}, we are committed to collecting donations from generous individuals and distributing
+                    them to those who need it most. Our mission is to bring hope and support to those facing difficult
+                    circumstances.
+                </p>
+                <p class="hero-desc mt-3">
+                    Together, we can make a positive impact on the world.
+                </p>
+            </div>
+            <div class="col-span-6 flex items-end justify-end h-full w-full">
+                <img src="/assets/resources/hands.jpeg" class="hands-image h-full w-full object-fill rounded-lg "
+                    alt="hands" />
+            </div>
+        </div>
+    </div>
+</section>
+<section class="why-choose-us">
+    <div class="content py-16">
+        <div class="grid grid-cols-12">
+            <h1 class="block col-span-12 hero-title">
+                Why Choose Us
+            </h1>
+            <p class="col-span-10 hero-desc mt-3">
+                By choosing {{domain}}, you are directly contributing to improving the lives of others. Your donations
+                make a meaningful difference in the community.
+            </p>
+            <div class="sections col-span-12 grid grid-cols-12 gap-2 my-5">
+                @for (item of whyChooseUsContents; track $index) {
+                <div class="col-span-4">
+                    <div class="icon max-w-20 flex items-center justify-center">
+                        <img [src]="item.icon" class="h-full w-full object-fill select-none"
+                            [alt]="item?.headingText" />
+                    </div>
+                    <h3 class="text-xl font-bold my-3 select-none">{{item?.headingText}}</h3>
+                    <p class="hero-desc select-none">{{item?.descriptionText}}</p>
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+<section class="approach">
+    <div class="content py-16">
+        <div class="grid grid-cols-12 gap-10">
+            <div class="col-span-6 flex flex-col items-start justify-center">
+                <h1 class="hero-title">
+                    Our Approach
+                </h1>
+                <p class="hero-desc">
+                    At {{domain}}, we believe in the power of collective giving. Together, we can create positive change
+                    and uplift communities in need.
+                </p>
+                <ul class="my-4">
+                    @for (item of approachContents; track $index) {
+                    <li class="mb-4">
+                        <h3 class="text-base !m-0 font-bold my-3 select-none">
+                            {{item?.headingText}}
+                        </h3>
+                        <p class="hero-desc !m-0 select-none text-sm">
+                            {{item?.descriptionText}}
+                        </p>
+                    </li>
+                    }
+                </ul>
+            </div>
+            <div class="col-span-6 flex items-end justify-end h-full w-full">
+                <img src="/assets/resources/hero-approach.webp"
+                    class="hands-image h-full w-full object-fill rounded-lg " alt="hands" />
+            </div>
+        </div>
+    </div>
+</section>
+<section class="services">
+    <div class="content py-16">
+        <div class="grid grid-cols-12 gap-12">
+            <div class="col-span-6 flex items-end justify-end h-full w-full">
+                <img src="/assets/resources/hero-services.jpg"
+                    class="services-image h-full w-full object-fill rounded-lg " alt="hands" />
+            </div>
+            <div class="col-span-6 flex flex-col items-start justify-center">
+                <h1 class="hero-title">
+                    Our Services
+                </h1>
+                <p class="hero-desc">
+                    {{domain}} offers convenient donation collection services for individuals and businesses. We handle
+                    the logistics, so you can focus on making a difference.
+                </p>
+                <ul class="my-4">
+                    @for (item of servicesContent; track $index) {
+                    <li class="mb-4">
+                        <h3 class="text-base !m-0 font-bold my-3 select-none">
+                            {{item?.headingText}}
+                        </h3>
+                        <p class="hero-desc !m-0 select-none text-sm">
+                            {{item?.descriptionText}}
+                        </p>
+                    </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="impact">
+    <div class="content py-16">
+        <div class="grid grid-cols-12 gap-2">
+            <h1 class="block col-span-12 !m-0 text-center hero-title">
+                See Our Impact
+            </h1>
+            <p class="col-span-12 block text-center !m-0 hero-desc">
+                Explore the meaningful work we've done through our donation drives and distribution efforts.
+            </p>
+            <div class="col-span-12 grid grid-cols-12 my-5">
+                @for (item of impactItems; track $index) {
+                <div class="col-span-4 gallery-item">
+                    <div class="image-container">
+                        <img [src]="item?.imagePath"
+                            class="transition-all duration-200 ease-in-out filter grayscale hover:filter-none"
+                            [alt]="item?.descriptionText" />
+                    </div>
+                    <p class="hero-desc my-2 select-none">{{item?.descriptionText}}</p>
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+<section class="giving-back">
+    <div class="content py-16">
+        <div class="grid grid-cols-12 gap-2">
+            <h1 class="block col-span-12 !m-0 text-center hero-title">
+                Join Us in Giving Back
+            </h1>
+            <p class="col-span-12 block text-center !m-0 hero-desc">
+                Take the first step in changing lives by donating to those in need. Together, we can create a brighter
+                future for all.
+            </p>
+            <div class="col-span-12 flex items-center justify-center my-5 gap-4">
+                <p-button label="Donate Now" [outlined]="true" />
+                <p-button label="Get Involved" />
+            </div>
+        </div>
+    </div>
+</section>

@@ -11,35 +11,15 @@
         </div>
         <form [formGroup]="formGroup" (ngSubmit)="onSubmit()"
             class="flex flex-col justify-between w-full md:w-1/2 space-y-6 p-2">
-            <div class="flex flex-col gap-6">
-                <div *ngIf="!emailIsValid">
-                    <div class="relative">
-                        <input type="text" id="email" formControlName="emailOrPhone" class="inputContainer peer"
-                            placeholder=" " />
-                        <label for="email" class="labelContainer">Email or phone</label>
-                    </div>
-                    <div class="mt-1 ml-2" *ngIf="emailSubmitted && contact?.invalid">
-                        <p class="text-xs text-red-500" *ngIf="contact?.errors?.['required']">Email or Mobile is required.</p>
-                        <p class="text-xs text-red-500" *ngIf="contact?.errors?.['pattern']">
-                            Enter a valid
-                            email or 10-digit mobile number.</p>
-                    </div>
-                </div>
-                <div *ngIf="emailIsValid">
-                    <div class="relative">
-                        <input type="password" id="password" formControlName="password" class="inputContainer peer"
-                            placeholder=" " />
-                        <label for="password" class="labelContainer">Password</label>
-                    </div>
-                    <div class="mt-1 ml-2" *ngIf="passwordSubmitted && formGroup.get('password')?.invalid">
-                        <p class="text-xs text-red-500" *ngIf="formGroup.get('password')?.errors?.['required']">Password is required.</p>
-                        <p class="text-xs text-red-500" *ngIf="formGroup.get('password')?.errors?.['minlength']">Password must be at least 4 characters long.</p>
-                    </div>
-                </div>
+            <div class="flex flex-col gap-6"> 
+                <app-input *ngIf="!emaiIsValid"  label="Email or Phone" [submitted]="submitted" type="email" id="email" (valueChange)="handleValueChange($event,'emailOrPhone')"
+                ></app-input>
+                <app-input *ngIf="emaiIsValid" label="Password" [submitted]="submitted" type="password" id="password" (valueChange)="handleValueChange($event,'password')"
+                ></app-input>
             </div>
 
             <div class="flex flex-col md:flex-row justify-end gap-1 p-2">
-                <button type="button" class="text-sm md:text-base py-1 md:py-2 px-4 md:px-8 text-blue-600">
+                <button type="button" class="text-sm md:text-base py-1 md:py-2 px-4 md:px-8 text-blue-600" (click)="handleRegister()">
                     Register
                 </button>
                 <button type="submit"

@@ -1,0 +1,87 @@
+<div [formGroup]="form">
+  <div class="relative">
+    <ng-container [ngSwitch]="type">
+      <input *ngSwitchCase="'text'"
+             [type]="type"
+             [id]="id"
+             formControlName="inputValue"
+             [placeholder]="placeholder"
+             class="inputContainer peer" />
+             
+      <input *ngSwitchCase="'password'"
+             [type]="type"
+             [id]="id"
+             formControlName="inputValue"
+             [placeholder]="placeholder"
+             class="inputContainer peer" />
+             
+      <input *ngSwitchCase="'email'"
+             [type]="type"
+             [id]="id"
+             formControlName="inputValue"
+             [placeholder]="placeholder"
+             class="inputContainer peer" />
+             
+      <input *ngSwitchCase="'number'"
+             [type]="type"
+             [id]="id"
+             formControlName="inputValue"
+             [placeholder]="placeholder"
+             class="inputContainer peer" />
+             
+      <input *ngSwitchCase="'date'"
+             [type]="type"
+             [id]="id"
+             formControlName="inputValue"
+             [placeholder]="placeholder"
+             class="inputContainer peer" />
+             
+      <input *ngSwitchCase="'time'"
+             [type]="type"
+             [id]="id"
+             formControlName="inputValue"
+             [placeholder]="placeholder"
+             class="inputContainer peer" />
+             
+      <input *ngSwitchCase="'phone'"
+             [type]="'tel'"
+             [id]="id"
+             formControlName="inputValue"
+             [placeholder]="placeholder"
+             class="inputContainer peer" />
+             
+      <textarea *ngSwitchCase="'textarea'"
+                [id]="id"
+                formControlName="inputValue"
+                [placeholder]="placeholder"
+                class="inputContainer peer"></textarea>
+                
+      <input *ngSwitchCase="'emailOrPhone'"
+             [type]="'text'"
+             [id]="id"
+             formControlName="inputValue"
+             [placeholder]="placeholder"
+             class="inputContainer peer" />
+    </ng-container>
+    <label [for]="id" class="labelContainer" (click)="focusInput()">{{ label }}</label>
+  </div>
+ @if(submitted){
+  <div *ngIf="inputValue?.invalid && (inputValue?.dirty || inputValue?.touched)">
+    <p class="errorMsg" *ngIf="inputValue?.errors?.['required']">
+      Please enter a value.
+    </p>
+    <p class="errorMsg" *ngIf="inputValue?.errors?.['emailOrPhone']">
+      Please enter a valid email or phone number.
+    </p>
+    <p class="errorMsg" *ngIf="inputValue?.errors?.['password']">
+      Password must be at least 8 characters long and include uppercase, lowercase, number, and special character.
+    </p>
+    <p class="errorMsg" *ngIf="inputValue?.errors?.['date']">
+      Please enter a valid date (YYYY-MM-DD).
+    </p>
+    <p class="errorMsg" *ngIf="inputValue?.errors?.['pattern']">
+      Please enter a value that matches the pattern.
+    </p>
+  </div>
+}
+</div>

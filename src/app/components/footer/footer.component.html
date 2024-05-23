@@ -1,1 +1,39 @@
-<p>footer works!</p>
+<footer class="min-h-80 bg-white flex py-4 border-t border-gray-200">
+    <div class="footer-container w-full h-[inherit] max-w-5xl mx-auto">
+        <div class="grid grid-cols-12 gap-2 w-full h-full">
+            <div class="col-span-12 w-full">
+                <div class="logo">
+                    <a class="cursor-pointer block h-20 w-24" (click)="handleLogoClick()">
+                        <img src="assets/logo.jpg" class="w-full h-full object-fill bg-cover bg-center" />
+                    </a>
+                </div>
+                <p class="text-gray-400 select-none mt-2">Join us in making a difference.</p>
+            </div>
+            <div class="col-span-12 w-full h-full">
+                <ul class="h-full flex items-center justify-start gap-4">
+                    @for (item of NAVBAR_MENU_ITEMS; track $index) {
+                    <li class="cursor-pointer" (click)="handleNavItemClick(item)">
+                        <p class="text-gray-400">
+                            {{item.title}}
+                        </p>
+                    </li>
+                    }
+                </ul>
+            </div>
+            <div class="col-span-4">
+
+            </div>
+            <div class="col-span-12 flex items-end justify-between border-t border-gray-200">
+                <p class="text-gray-400 text-xs block text-center">
+                    &copy; 2024 {{domain}}. All rights are reserved.
+                </p>
+                <div class="social-media-links flex items-center justify-end gap-5">
+                    <i class="pi pi-twitter"></i>
+                    <i class="pi pi-whatsapp"></i>
+                    <i class="pi pi-instagram"></i>
+                    <i class="pi pi-facebook"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

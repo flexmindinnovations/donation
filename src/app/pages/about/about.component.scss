@@ -1,0 +1,23 @@
+ul {
+    li {
+        position: relative;
+        list-style-type: none;
+        text-align: justify;
+        margin: 10px 0;
+
+        &::before {
+            @apply flex items-center justify-center;
+            content: '';
+            position: absolute;
+            top: 4px;
+            background-color: rgb(204, 230, 230, 204);
+            border-radius: 50%;
+            left: -24px;
+            width: 16px;
+            height: 16px;
+            background-image: url('/assets/resources/icons/checkmark-sharp.svg');
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+    }
+}
